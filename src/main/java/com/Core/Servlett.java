@@ -12,17 +12,33 @@ import java.io.IOException;
 import java.util.Optional;
 
 
-@WebServlet (name = "Hello", urlPatterns = {"/api/*"})
+@WebServlet(name = "Hello", urlPatterns = {"/api/*"})
 public class Servlett extends HttpServlet {
-    private final Logger logger= LoggerFactory.getLogger(Servlett.class);
+    private final Logger logger = LoggerFactory.getLogger(Servlett.class);
 
-private static final String NAME= "name";
+    private static final String NAME = "name";
+
+
+    private Serwiss service;
+    //Servlet container needs it
+@SuppressWarnings("unused")
+    public Servlett() {
+        this(new Serwiss());
+    }
+
+    Servlett(Serwiss service) {
+        this.service = service;
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
         ;
-        logger.info("Request"+req.getParameterMap()+" got");
-        var parameter = Optional.ofNullable(req.getParameter(NAME)).orElse("world");
-        resp.getWriter().write("Elo" + parameter + "!");
+        logger.info("Request" + req.getParameterMap() + " got");
+        var name = req.getParameter(NAME);
+        var parameter = Optional.ofNullable(name).orElse("world");
+        var greeting = service.prepGreeting(name + parameter + "!");
+        resp.getWriter().write(greeting);
     }
 }
