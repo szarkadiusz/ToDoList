@@ -1,17 +1,17 @@
 package com.Core;
 
 class Lang {
-    private Long id;
+    private Integer id;
     private String welcomeMessage;
     private String code;
 
-    public Lang(Long id, String welcomeMessage, String code) {
+    public Lang(Integer id, String welcomeMessage, String code) {
         this.id = id;
         this.welcomeMessage = welcomeMessage;
         this.code = code;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
