@@ -14,11 +14,12 @@ import java.util.Optional;
 
 @WebServlet(name = "Hello", urlPatterns = {"/api/*"})
 public class Servlett extends HttpServlet {
+
+
+    private static final String NAME_PARAM = "name";
+    private static final String LANG_PARAM = "lang";
+
     private final Logger logger = LoggerFactory.getLogger(Servlett.class);
-
-    private static final String NAME = "name";
-
-
     private Serwiss service;
     //Servlet container needs it
 @SuppressWarnings("unused")
@@ -36,9 +37,11 @@ public class Servlett extends HttpServlet {
 //        super.doGet(req, resp);
         ;
         logger.info("Request" + req.getParameterMap() + " got");
-        var name = req.getParameter(NAME);
+        var name = req.getParameter(NAME_PARAM);
         var parameter = Optional.ofNullable(name).orElse("world");
-        var greeting = service.prepGreeting(name + parameter + "!");
+        var greeting = service.prepGreeting(
+                req.getParameter(NAME_PARAM),
+                req.getParameter(LANG_PARAM));
         resp.getWriter().write(greeting);
     }
 }
