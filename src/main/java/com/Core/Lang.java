@@ -1,15 +1,34 @@
 package com.Core;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table( name = "languages" )
+
 class Lang {
+    @Id
+    @GeneratedValue(generator="inc")
+    @GenericGenerator(name="inc", strategy = "increment")
     private Integer id;
     private String welcomeMessage;
     private String code;
 
+    //hibernate uses it
+@SuppressWarnings("unsused")
+    Lang () {
+}
+
     public Lang(Integer id, String welcomeMessage, String code) {
-        this.id = id;
-        this.welcomeMessage = welcomeMessage;
-        this.code = code;
-    }
+            this.id = id;
+            this.welcomeMessage = welcomeMessage;
+            this.code = code;
+        }
+
 
     public Integer getId() {
         return id;
