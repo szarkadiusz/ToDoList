@@ -19,7 +19,7 @@ class Lang {
     private String code;
 
     //hibernate uses it
-@SuppressWarnings("unsused")
+    @SuppressWarnings({"unsused", "unused"})
     Lang () {
 }
 

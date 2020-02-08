@@ -33,7 +33,7 @@
         <!-- Names the annotated entity class -->
 
 
-        <mapping class="package com.Core.Lang"/>
+        <mapping class="com.Core.Lang"/>
     </session-factory>
 
 </hibernate-configuration>

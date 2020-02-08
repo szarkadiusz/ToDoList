@@ -41,7 +41,6 @@ public class Main {
         server.addLifeCycleListener(new AbstractLifeCycle.AbstractLifeCycleListener() {
             @Override
             public void lifeCycleStopped(LifeCycle event) {
-                super.lifeCycleStopped(event);
                 HibernateUtil.close();
             }
         });
