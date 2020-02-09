@@ -1,55 +1,52 @@
 package com.Core;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "languages" )
+@Table(name = "LANGUAGES")
+
 
 class Lang {
     @Id
-    @GeneratedValue(generator="inc")
-    @GenericGenerator(name="inc", strategy = "increment")
+    @GeneratedValue(generator = "inc")
+    @GenericGenerator(name = "inc", strategy = "increment")
     private Integer id;
     private String welcomeMessage;
-    private String code;
-
-    //hibernate uses it
-    @SuppressWarnings({"unsused", "unused"})
-    Lang () {
-}
-
-    public Lang(Integer id, String welcomeMessage, String code) {
-            this.id = id;
-            this.welcomeMessage = welcomeMessage;
-            this.code = code;
-        }
-
+    private String languageCode;
+    Lang() {
+    }
+    public Lang(Integer id, String welcomeMessage, String languageCode) {
+        this.id = id;
+        this.welcomeMessage = welcomeMessage;
+        this.languageCode = languageCode;
+    }
 
     public Integer getId() {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getWelcomeMessage() {
         return welcomeMessage;
     }
 
-    public Lang setWelcomeMessage(String welcomeMessage) {
+    public void setWelcomeMessage(String welcomeMessage) {
         this.welcomeMessage = welcomeMessage;
-        return this;
     }
 
-    public String getCode() {
-        return code;
+    public String getLanguageCode() {
+        return languageCode;
     }
 
-    public Lang setCode(String code) {
-        this.code = code;
-        return this;
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
     }
+
+
 }

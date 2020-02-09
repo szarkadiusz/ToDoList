@@ -1,18 +1,15 @@
 package com.Core;
-
-
 import java.util.Optional;
 
 class LangRepository {
 
-    Optional<Lang> findById  (Integer id){
+    Optional<Lang> findById(Integer id) {
+//        return languages.stream().filter(l -> l.getId().equals(id)).findFirst();
         var session = HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();
-        var result = session.get(Lang.class,id);
+        Optional<Lang> result = Optional.ofNullable(session.get(Lang.class, id));
         transaction.commit();
         session.close();
-      return Optional.ofNullable(result);
+        return result;
     }
 }
-
-
