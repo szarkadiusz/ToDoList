@@ -1,9 +1,7 @@
 package com.Core;
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "LANGUAGES")
@@ -14,7 +12,10 @@ class Lang {
     @GeneratedValue(generator = "inc")
     @GenericGenerator(name = "inc", strategy = "increment")
     private Integer id;
+    @Column(name = "WELCOMEMSG")
     private String welcomeMessage;
+
+    @Column(name = "code")
     private String languageCode;
     Lang() {
     }
