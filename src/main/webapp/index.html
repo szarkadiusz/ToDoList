@@ -9,10 +9,30 @@
 </head>
 <body>
 <form class="pure-form">
-    <label class="pure-radio">
+    <input type="text" class="pure-input-rounded" placeholder="name">
+    <label class="pure-radio" style="width: 40%: margin:0 auto">
         <input  type="radio" name="optionsRadios" value="1" checked>
     </label>
     <label class="pure-radio">
         <input  type="radio" name="optionsRadios" value="2">
+
+
+    </label>
+    <label class="search bar">
+
+    <button id = "bin" type="submit" class="pure-button pure-button-primary">Submit</button>
     </label>
 </form>
+<script>
+    const form = document.getElementById ('welcome');
+    document.getElementById('btn').addEventListener('click', (event)=> {
+    event.preventDefault();
+   const formObj = {
+   name:form.elements.name.value,
+   lang:form.elements.lang.value
+};
+alert (new URLSearchParams(formObj));
+    } );
+</script>
+</body>
+</html>
