@@ -2,37 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ultimate TO DO LIST</title>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
-          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
-          crossorigin="anonymous">
+    <title>ULTIMATE TODO LIST</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+          integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 </head>
 <body>
-<form class="pure-form">
-    <input type="text" class="pure-input-rounded" placeholder="name">
-    <label class="pure-radio" style="width: 40%: margin:0 auto">
-        <input  type="radio" name="optionsRadios" value="1" checked>
+<form id="welcomeForm" class="pure-form" style="width: 40%; margin: 0 auto">
+    <input type="text" class="pure-input-rounded" name="name" placeholder="name">
+    <label class="pure-radio">
+        <input type="radio" name="lang" value="1" checked>
+        🇺🇸
     </label>
     <label class="pure-radio">
-        <input  type="radio" name="optionsRadios" value="2">
-
-
+        <input type="radio" name="lang" value="2">
+        🇵🇱
     </label>
-    <label class="search bar">
-
-    <button id = "bin" type="submit" class="pure-button pure-button-primary">Submit</button>
-    </label>
+    <button id="btn" class="pure-button pure-button-primary">Submit</button>
 </form>
+<div id="welcome" style="width: 40%; margin: 0 auto"></div>
 <script>
-    const form = document.getElementById ('welcome');
-    document.getElementById('btn').addEventListener('click', (event)=> {
+  const div = document.getElementById('welcome');
+  const form = document.getElementById('welcomeForm');
+  document.getElementById('btn').addEventListener('click', (event) => {
     event.preventDefault();
-   const formObj = {
-   name:form.elements.name.value,
-   lang:form.elements.lang.value
-};
-alert (new URLSearchParams(formObj));
-    } );
+    const formObj = {
+      name: form.elements.name.value,
+      lang: form.elements.lang.value
+    };
+    fetch('http://localhost:8080/api?' + new URLSearchParams(formObj))
+      .then(response => response.text())
+      .then((text) => {
+        div.innerHTML = `
+            <h1>${text}</h1>
+        `;
+      });
+  });
 </script>
 </body>
 </html>
